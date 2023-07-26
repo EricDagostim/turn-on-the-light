@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clay Cat</title>
+</head>
+<body>
+
+    <div id="background" class="background on-light">
+        
+
+        <div class="content-buttons">
+            <button id="icon-off" onclick="toggleLight();">
+                <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><path d="M5 8H9V9H10V13H9V14H5V13H4V9H5V8M19 5V6H20V7H21V15H20V16H19V17H3V16H2V15H1V7H2V6H3V5H19M18 7H4V8H3V14H4V15H18V14H19V8H18V7Z" /></svg>
+            </button>
+    
+            <button id="icon-on" onclick="toggleLight();">
+                <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><path d="M3 5H19V6H20V7H21V15H20V16H19V17H3V16H2V15H1V7H2V6H3V5M13 8V9H12V13H13V14H17V13H18V9H17V8H13Z" /></svg>
+            </button>
+        </div>
+    </div>
+
+
+    
+</body>
+
+<style>
+
+    *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body{
+        background-image: url("assets/cat-clay.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .background{
+        width: 100%;
+        height: 100vh;
+        backdrop-filter: brightness(0.1);             
+        
+        
+    }
+
+    .on-light{
+        animation: on-light 300ms forwards;
+    }
+
+    .off-light{
+        animation: off-light 300ms forwards;
+    }
+
+
+    .content-buttons{
+        display: flex;
+        justify-content: center;      
+    }
+
+    .background button{
+        background: none;
+        outline: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        height: 50px;
+    }
+    
+    .background button svg{
+        fill: rgb(255, 252, 252);
+        height: 100%;
+
+        background-color: rgba(0, 0, 0, 0.205);
+        backdrop-filter: blur(160px);
+        padding: 10px;
+        border-radius: 50px;
+        margin: 10px;
+
+        transition: 300ms;
+    }
+
+    .background button svg:hover{
+        background-color: rgba(0, 0, 0, 0.397);
+        transition: 300ms;
+        cursor: pointer;   
+    }
+
+    #icon-off{
+        display: none;
+    }
+
+    @keyframes on-light{
+        0%{
+            backdrop-filter: brightness(0.1);
+        }
+        80%{
+            backdrop-filter: brightness(10);
+
+        }
+        100%{
+            backdrop-filter: brightness(1);
+        }
+    }
+
+    @keyframes off-light{
+        0%{
+            backdrop-filter: brightness(3);
+        }
+        80%{
+            backdrop-filter: brightness(-2);
+
+        }
+        100%{
+            backdrop-filter: brightness(0.1);
+        }
+
+    }
+
+    
+
+
+</style>
+
+<script>
+    let statusToggle = true; //true = ON false = OFF
+    let background = document.getElementById("background");
+    let buttonOn = document.getElementById("icon-on");
+    let buttonOff = document.getElementById("icon-off");
+
+    function toggleLight(){
+
+        if(statusToggle){
+            statusToggle = false;
+            buttonOff.style.display = "none";
+            buttonOn.style.display = "block";
+
+            background.classList.toggle('on-light');
+            background.classList.toggle('off-light');
+            
+        }else{
+            background.classList.toggle('on-light');
+            background.classList.toggle('off-light');
+            
+            buttonOff.style.display = "block";
+            buttonOn.style.display = "none";
+            statusToggle = true;
+        }
+    }
+</script>
+</html>
